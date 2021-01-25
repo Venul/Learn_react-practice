@@ -9,7 +9,9 @@ function App() {
       </header>
       <body>
         <Car name ={'FORD'} year={2018} />
-        <Car name ={'Nissan'} year={2016} />
+        <Car name ={'Nissan'} year={2016}>
+          <p style={{color:'red'}}>Color</p>
+        </Car>
       </body>
     </div>
   );
