@@ -5,7 +5,6 @@ import Car from './Car/Car'
 
 
 class App extends Component {
-  // нужно наследование от компоненты. Без этого стейт не работает
 
   state = {
     cars: [
@@ -16,27 +15,36 @@ class App extends Component {
     pageTitle: 'Cars list'
   }
 
-render(){
-  const divStyle = {
-    textAlign: 'center'
+  changeTitleHandler = () => {
+    const oldTitle = this.state.pageTitle;
+    const newTitle = oldTitle + ' Blablacars';
+    this.setState({
+      pageTitle: newTitle
+    });
   }
 
-  let cars; 
-  cars = this.state.cars;
-  // не как в уроке. Пришлось создать спера переменную
+  render() {
+    const divStyle = {
+      textAlign: 'center'
+    }
 
-  return (
-    <div className="App">
-      <header>
-        <h1>{this.state.pageTitle}</h1>
-      </header>
-      <body style={divStyle}>
-        <Car name ={cars[0].name} year={cars[0].year} />
-        <Car name ={cars[1].name} year={cars[1].year} />
-        <Car name ={cars[2].name} year={cars[2].year} />
-      </body>
-    </div>
-  );
-}
+    let cars; 
+    cars = this.state.cars;
+
+    return (
+      <div className="App">
+        <div>
+          <h1>{this.state.pageTitle}</h1>
+
+          <button onClick={this.changeTitleHandler}>Change title</button>
+        </div>
+        <div style={divStyle}>
+          <Car name ={cars[0].name} year={cars[0].year} />
+          <Car name ={cars[1].name} year={cars[1].year} />
+          <Car name ={cars[2].name} year={cars[2].year} />
+        </div>
+      </div>
+    );
+  }
 }
 export default App;
