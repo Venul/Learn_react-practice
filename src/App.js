@@ -14,9 +14,14 @@ class App extends Component {
   }
 
   changeTitleHandler = (newTitle) => {
-
     this.setState({
       pageTitle: newTitle
+    });
+  }
+
+  handleInput = (event) => {
+    this.setState({
+      pageTitle: event.target.value
     });
   }
 
@@ -32,6 +37,8 @@ class App extends Component {
       <div className="App">
         <div>
           <h1>{this.state.pageTitle}</h1>
+
+          <input type="text" onChange={this.handleInput}/>
         </div>
 
         <div style={divStyle}>
