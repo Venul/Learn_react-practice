@@ -20,9 +20,28 @@ class App extends Component {
     });
   }
 
-  changeTitleHandler = (newTitle) => {
+  onChangeName(name, index) {
+    const car = this.state.cars[index];
+    // получили машину
+    car.name = name;
+    // поменяли имя
+    const newCars = [...this.state.cars];
+    // клонируем массив, для того, чтобы можно было изменить стейт
+    newCars[index] = car
+    // присваиваем машину с новым имененем в новый массив
     this.setState({
-      pageTitle: newTitle
+      cars: newCars
+    })
+    // сетим в стейт
+  }
+
+  deleteHandler(index) {
+    const newCars = this.state.cars.concat();
+    // кллонируем массив
+    newCars.splice(index, 1);
+
+    this.setState({
+      cars: newCars
     })
   }
 
@@ -31,20 +50,6 @@ class App extends Component {
       textAlign: 'center'
     }
     
-
-    // let cars = null;
-    // if (this.state.showCars) {
-    //   cars = this.state.cars.map((car, index) => {
-    //     return (
-    //       <Car 
-    //         key = {index}
-    //         name = {car.name}
-    //         year = {car.year} 
-    //         onChangeTitle = {() => this.changeTitleHandler(car.name)}
-    //       />
-    //     )
-    //   })
-    // }
 
     return (
       <div className="App">
@@ -57,7 +62,6 @@ class App extends Component {
             onClick={this.toggleCarsHandler}>Toggle cars
           </button>
           
-          {/* {cars} */}
           { this.state.showCars 
               ? this.state.cars.map((car, index) => {
                 return (
@@ -65,7 +69,8 @@ class App extends Component {
                     key = {index}
                     name = {car.name}
                     year = {car.year} 
-                    onChangeTitle = {() => this.changeTitleHandler(car.name)}
+                    onChangeName = {event => this.onChangeName(event.target.value, index)}
+                    onDelete = {this.deleteHandler.bind(this, index)}
                   />
                 )
               })
