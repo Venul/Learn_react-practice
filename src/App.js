@@ -61,6 +61,12 @@ class App extends Component {
           <button 
             onClick={this.toggleCarsHandler}>Toggle cars
           </button>
+          <div style ={{
+            width: 400,
+            margin: 'auto',
+            paddingTop: '20px'
+          }}>
+
           
           { this.state.showCars 
               ? this.state.cars.map((car, index) => {
@@ -76,6 +82,7 @@ class App extends Component {
               })
             : null
           }
+          </div>
         </div>
       </div>
     );
