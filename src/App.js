@@ -45,7 +45,19 @@ class App extends Component {
     })
   }
 
+  componentWillMount() {
+    // 1
+    console.log('componentWillMount')
+  }
+
+  componentDidMount() {
+        // 3
+    console.log('componentDidMount')
+  }
+
   render() {
+        // 2
+    console.log('render')
     const divStyle = {
       textAlign: 'center'
     }
@@ -54,7 +66,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <h1>{this.state.pageTitle}</h1>
+          <h1>{this.props.title}</h1>
         </div>
 
         <div style={divStyle}>
